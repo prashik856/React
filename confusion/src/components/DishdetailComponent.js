@@ -1,9 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Card, CardImg, CardBody, CardText, CardTitle} from 'reactstrap';
 
-class DishDetail extends Component{
+    componentDidMount(){
+        console.log('Dishdetail Component componentDidMount is invoked');
+    }
 
-    renderDish(dish){
+    componentDidUpdate(){
+        console.log('Dishdetail Component componentDidUpdate is invoked')
+    }
+
+    function RenderDish({dish}){
         console.log('Inside rederDish');
         return(
             <div className="col-12 col-md-5 m-1">
@@ -15,18 +21,18 @@ class DishDetail extends Component{
                         </CardBody>
                 </Card>
             </div>
-            );
-        }
+        );
+    }
 
-    renderComments(dish){
-        const comment = dish.comments.map( (comment) => {
+    function RenderComments({comments}){
+        const comment = comments.map( (comment) => {
             return(
                 <li key={comment.id}>
                     {comment.author},{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
                 </li>
                 );
         });
-        if(dish != null){
+        if(comments != null){
             console.log('Inside renderComments');
             return(
                 <div className="col-12 col-md-5 m-1">
@@ -44,14 +50,16 @@ class DishDetail extends Component{
         }
     }
 
-    render(){
-        const dish = this.props.dish;
+    const DishDetail = (props) => {
+        console.log('Dishdetail Component render is invoked');
+        const dish = props.dish;
         console.log("Dish Detail Component invoked");
         if(dish != null){
             return(
                 <div className="container">
                     <div className="row">
-                        {this.renderDish(dish)}
+                        <RenderDish dish={props.dish}/>
+                        <RenderComments comments = {props.comments}/>
                     </div>
                 </div>
             );
