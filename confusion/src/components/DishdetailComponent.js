@@ -17,8 +17,7 @@ function RenderDish({dish}){
         );
     }
 
-function RenderComments({comments}){
-    
+function RenderComments({comments, addComment, dishId}){
     if(comments != null){
         return(
             <div className="col-12 col-md-5 m-1">
@@ -33,6 +32,7 @@ function RenderComments({comments}){
                             );
                         })}
                     </ul>
+                    <CommentForm dishid={dish.Id} addComment={addComment}/>
             </div>    
             );
         }
@@ -42,6 +42,38 @@ function RenderComments({comments}){
             <div> </div>
         );
     }    
+}
+
+class CommentFrom extends React.Component {
+    contructor(props){
+        super(props);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
+        this.state = {
+            isNavOpen: false,
+            isModalOpen: false
+        };
+    }
+
+    toggleModal(){
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        });
+    }
+
+    handleSubmit(values){
+        this.toggleModal();
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment)
+    }
+
+    render(){
+        return(
+            <div>
+
+            </div>
+        );
+    }
 }
 
 const DishDetail = (props) => {
@@ -64,7 +96,9 @@ const DishDetail = (props) => {
             </div>
                 <div className="row">
                     <RenderDish dish={props.dish}/>
-                    <RenderComments comments = {props.comments}/>
+                    <RenderComments comments = {props.comments}
+                    addComment={props.addComment}
+                    dishId={props.dish.id}/>
                 </div>
             </div>
         );
