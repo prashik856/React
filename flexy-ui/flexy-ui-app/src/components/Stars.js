@@ -1,36 +1,62 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Button } from "reactstrap";
 
 class Stars extends React.Component {
 
     constructor(props) {
         super(props);
-
+        let data = [];
         console.log("In Stars: " 
             + this.isActiveHome + " " 
             + this.isActiveMovies + " " 
             + this.isActiveSeries + " "
             + this.isActiveStars);
-          
+        
+        this.state = {
+            data: []
+        };
+    }
+
+    componentDidMount() {
         let endpoint = "/api/v1/stars/random";
-        let responseText = fetch(endpoint)
-                            .then(
-                                function (response) {
-                                console.log( "Response from Server: " + response.text());
-                                let responseText = response.text();
-                                return responseText;
-                            });
-        console.log("Response Text: " + responseText);
+        fetch(endpoint)
+        .then((response) => response.json())
+        .then((json) => {
+            this.setState({
+                data: json.data
+            })
+        });
     }
 
     render() {
+        let {data} = this.state;
         return (
             <div>
                 <Header isActiveStars="true"/>
-                <h1>
-                    Random stars here.
-                </h1>
+                <br/>
+                <div>
+                    {console.log("Data Length: " + data.length)}
+                    {
+                        data.map((item) => {
+                            {console.log("Item name: " + item.name)}
+                            return(
+                                <div> 
+                                    <Button
+                                        active
+                                        block
+                                        color="dark"
+                                        size="lg"
+                                    >
+                                        {item.name}
+                                    </Button>
+                                    <br/><br/>
+                                </div>
+                            );
+                        })
+                    }
+                </div>
                 <Footer/>
             </div>
         );
