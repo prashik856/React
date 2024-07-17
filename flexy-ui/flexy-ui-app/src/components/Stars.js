@@ -7,7 +7,7 @@ class Stars extends React.Component {
 
     constructor(props) {
         super(props);
-        let data = [];
+        let randomData = [];
         console.log("In Stars: " 
             + this.isActiveHome + " " 
             + this.isActiveMovies + " " 
@@ -15,7 +15,7 @@ class Stars extends React.Component {
             + this.isActiveStars);
         
         this.state = {
-            data: []
+            randomData: []
         };
     }
 
@@ -25,21 +25,21 @@ class Stars extends React.Component {
         .then((response) => response.json())
         .then((json) => {
             this.setState({
-                data: json.data
+                randomData: json.data
             })
         });
     }
 
     render() {
-        let {data} = this.state;
+        let {randomData} = this.state;
         return (
             <div>
                 <Header isActiveStars="true"/>
                 <br/>
                 <div>
-                    {console.log("Data Length: " + data.length)}
+                    {console.log("Data Length: " + randomData.length)}
                     {
-                        data.map((item) => {
+                        randomData.map((item) => {
                             {console.log("Item name: " + item.name)}
                             return(
                                 <div> 
@@ -51,6 +51,18 @@ class Stars extends React.Component {
                                     >
                                         {item.name}
                                     </Button>
+                                    <br/>
+                                    {
+                                        item.movies.map((movie) => {
+                                            console.log("Movie Location: " + movie.location);
+                                            return(
+                                                <video controls 
+                                                style={{padding: "2px"}}>
+                                                    <source src={ "file:" + movie.location} type="video/mp4"/>
+                                                </video>
+                                            )
+                                        })
+                                    }
                                     <br/><br/>
                                 </div>
                             );
