@@ -56,10 +56,13 @@ class Stars extends React.Component {
                                         item.movies.map((movie) => {
                                             console.log("Movie Location: " + movie.location);
                                             return(
-                                                <video controls 
-                                                style={{padding: "2px"}}>
-                                                    <source src={ "file:" + movie.location} type="video/mp4"/>
-                                                </video>
+                                                <div> 
+                                                    <a href={"file:" + movie.location}>
+                                                        {movie.name}
+                                                    </a>
+                                                    <br/>
+                                                </div>
+                                                
                                             )
                                         })
                                     }
