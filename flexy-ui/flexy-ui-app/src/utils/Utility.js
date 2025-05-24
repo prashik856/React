@@ -1,3 +1,5 @@
+import Config from '../config/config.json';
+
 function activeDefaultValue(booleanValue){
     var returnValue = "";
     if(booleanValue !== "true") {
@@ -17,4 +19,13 @@ function activeBooleanValue(stringValue) {
     return returnValue;
 }
 
-export {activeBooleanValue, activeDefaultValue};
+function getConfig() {
+    // reads the config.json file from config directory
+    return Config
+}
+
+function getStartsDirectory() {
+    return Config["starsDirectory"];
+}
+
+export {activeBooleanValue, activeDefaultValue, getStartsDirectory, getConfig};

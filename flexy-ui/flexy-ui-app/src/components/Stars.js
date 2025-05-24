@@ -1,13 +1,14 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Button } from "reactstrap";
+import {getStartsDirectory} from '../utils/Utility';
+import ReactPlayer from 'react-player'
 
 class Stars extends React.Component {
 
     constructor(props) {
         super(props);
-        let randomData = [];
+        this.randomVideo = "/test.mp4";
         console.log("In Stars: " 
             + this.isActiveHome + " " 
             + this.isActiveMovies + " " 
@@ -19,17 +20,6 @@ class Stars extends React.Component {
         };
     }
 
-    componentDidMount() {
-        let endpoint = "/api/v1/stars/random";
-        fetch(endpoint)
-        .then((response) => response.json())
-        .then((json) => {
-            this.setState({
-                randomData: json.data
-            })
-        });
-    }
-
     render() {
         let {randomData} = this.state;
         return (
@@ -37,40 +27,17 @@ class Stars extends React.Component {
                 <Header isActiveStars="true"/>
                 <br/>
                 <div>
-                    {console.log("Data Length: " + randomData.length)}
-                    {
-                        randomData.map((item) => {
-                            {console.log("Item name: " + item.name)}
-                            return(
-                                <div> 
-                                    <Button
-                                        active
-                                        block
-                                        color="dark"
-                                        size="lg"
-                                    >
-                                        {item.name}
-                                    </Button>
-                                    <br/>
-                                    {
-                                        item.movies.map((movie) => {
-                                            console.log("Movie Location: " + movie.location);
-                                            return(
-                                                <div> 
-                                                    <a href={"file:" + movie.location}>
-                                                        {movie.name}
-                                                    </a>
-                                                    <br/>
-                                                </div>
-                                                
-                                            )
-                                        })
-                                    }
-                                    <br/><br/>
-                                </div>
-                            );
-                        })
-                    }
+                {/* <ReactPlayer
+                url= 'videos/test.mp4'
+                width='360'
+                height='360'
+                controls = {true}
+                /> */}
+
+                <video width="320" height="240" controls>
+                    <source src="videos/test.mp4" type="video/mp4"/>
+                    Your browser does not support the video tag.
+                </video> 
                 </div>
                 <Footer/>
             </div>
