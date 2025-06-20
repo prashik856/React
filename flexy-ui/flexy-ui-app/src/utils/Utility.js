@@ -1,4 +1,3 @@
-import UserConfig from '../config/config.json';
 import Config from '../config/config-user.json';
 
 function activeDefaultValue(booleanValue){
@@ -29,6 +28,18 @@ function getStartsDirectory() {
     return Config["starsDirectory"];
 }
 
+function getModelFromId(id) {
+    let allModels = getAllModels()
+    for(let i=0; i<allModels.length; i++) {
+        let model = allModels[i]
+        if(Config[model]["id"] === id) {
+            console.log("Found model for id :" + id + " " + model );
+            return model
+        }
+    }
+    return ""
+}
+
 function getAllModels() {
     let allModels = Config["models"]
     // console.log("All Models: " + allModels)
@@ -48,9 +59,14 @@ function getRandomVideos() {
         let min = 0
         let index = Math.floor((min + Math.random() * (max - min)))
         randomVideos.push(modelVideos[index])
+        return 0
     })
     console.log("Random Videos: " + randomVideos);
     return randomVideos;
+}
+
+function getIdFromModel(model) {
+    return Config[model]["id"]
 }
 
 function getRandomModels() {
@@ -70,4 +86,4 @@ function getRandomModels() {
 }
 
 export {activeBooleanValue, activeDefaultValue, getStartsDirectory, getConfig, 
-    getRandomModels, getRandomVideos};
+    getRandomModels, getRandomVideos, getAllModels, getIdFromModel, getModelFromId, getModelVideos};

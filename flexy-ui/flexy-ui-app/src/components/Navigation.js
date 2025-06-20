@@ -1,6 +1,7 @@
 import React from "react";
 import { Nav, NavItem, NavLink } from "reactstrap";
 import {activeDefaultValue, activeBooleanValue} from '../utils/Utility';
+import {Link} from 'react-router-dom';
 
 class Navigation extends React.Component {
 
@@ -23,24 +24,20 @@ class Navigation extends React.Component {
             <div className="navigation">
                 <Nav tabs fill>
                     <NavItem>
-                        <NavLink 
-                        style={{
+                        <NavLink>
+                            <Link style={{
                             fontFamily: activeBooleanValue(this.isActiveHome) ? "bold" : "",
                             color: activeBooleanValue(this.isActiveHome) ? "red" : ""
-                        }} 
-                        href="/home">
-                            Home
+                        }} to="/home">Home</Link>    
                         </NavLink>
                     </NavItem>
 
                     <NavItem>
-                        <NavLink 
-                        style={{
+                        <NavLink >
+                            <Link style={{
                             fontFamily: activeBooleanValue(this.isActiveStars) ? "bold" : "",
                             color: activeBooleanValue(this.isActiveStars) ? "red" : ""
-                        }}
-                        href="/stars">
-                            Stars
+                        }} to="/stars">Stars</Link>
                         </NavLink>
                     </NavItem>   
                                  

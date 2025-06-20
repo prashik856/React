@@ -47,7 +47,12 @@ def main():
     for i in range(len(model_directories)):
         directory: str = model_directories[i]
         model_videos: list = os.listdir(directory)
-        config_data[models[i]]["videos"] = []
+        model = models[i]
+        
+        config_data[model]["videos"] = []
+        model_id: str = str(model).replace(" ", '').lower() + str(len(model_videos))
+        
+        config_data[model]["id"] = model_id
         for j in range(len(model_videos)):
             video_name_original: str = model_videos[j]
             # print(video_name_original)

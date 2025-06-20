@@ -1,6 +1,5 @@
 import React from "react";
 import '../App.css';
-import Navigation from "./Navigation";
 import {activeDefaultValue} from '../utils/Utility';
 
 class Header extends React.Component {
@@ -33,10 +32,6 @@ class Header extends React.Component {
                     </h1>
                 </div>
                 <br/><br/>
-                <Navigation isActiveHome={this.isActiveHome}
-                            isActiveMovies={this.isActiveMovies}
-                            isActiveSeries={this.isActiveSeries}
-                            isActiveStars={this.isActiveStars}/>
             </div>
         );
     }
