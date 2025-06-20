@@ -27,6 +27,7 @@ class Header extends React.Component {
         return(
             <div>
                 <div className='application-name'>
+                    <br/>
                     <h1>
                         Flexy
                     </h1>

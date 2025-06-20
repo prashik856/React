@@ -32,28 +32,6 @@ class Navigation extends React.Component {
                             Home
                         </NavLink>
                     </NavItem>
-                    
-                    <NavItem>
-                        <NavLink 
-                        style={{
-                            fontFamily: activeBooleanValue(this.isActiveMovies) ? "bold" : "",
-                            color: activeBooleanValue(this.isActiveMovies) ? "red" : ""
-                        }}
-                        href="/movies">
-                            Movies
-                        </NavLink>
-                    </NavItem>
-  
-                    <NavItem>
-                        <NavLink 
-                        style={{
-                            fontFamily: activeBooleanValue(this.isActiveSeries) ? "bold" : "",
-                            color: activeBooleanValue(this.isActiveSeries) ? "red" : ""
-                        }}
-                        href="/series">
-                            Series
-                        </NavLink>
-                    </NavItem>
 
                     <NavItem>
                         <NavLink 

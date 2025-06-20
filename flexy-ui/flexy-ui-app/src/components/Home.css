@@ -1,0 +1,23 @@
+.random-model-button {
+    padding: 32px 16px;
+    text-align: center;
+    display: inline-block;
+    height: 10%;
+    width: 15%;
+    background-color: #008CBA;;
+    font-size: 15px;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+    margin: 2%;
+}
+
+.random-video {
+    display:inline;
+    padding: 16px 8px;
+    margin: 2%
+}
+
+.random-model-button:hover {
+    background-color: #04AA6D; /* Green */
+    color: black;
+  }
